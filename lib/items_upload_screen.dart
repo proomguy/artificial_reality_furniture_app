@@ -18,7 +18,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
   TextEditingController itemDescriptionTextEditingController = TextEditingController();
   TextEditingController itemPriceTextEditingController = TextEditingController();
 
-  //Upload form Screen
+  //Upload form Screen when the app is running
   Widget uploadFormScreen(){
     return Scaffold(
       backgroundColor: Colors.black,
@@ -222,6 +222,51 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
           ),
 
         ],
+      ),
+    );
+  }
+
+  //Default form screen when the app is running
+  Widget defaultScreen(){
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: const Text(
+          "Upload new Item",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.add_photo_alternate,
+              color: Colors.white,
+              size: 200,
+            ),
+            ElevatedButton(
+                onPressed: (){
+
+                },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.cyan
+              ),
+                child: const Text(
+                  "Add New Item",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black
+                  ),
+                ),
+            ),
+          ],
+        ),
       ),
     );
   }
