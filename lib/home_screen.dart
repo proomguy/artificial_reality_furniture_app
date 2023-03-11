@@ -1,3 +1,4 @@
+import 'package:ar_furniture_app/upload_items_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
               onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemsUploadScreen()));
               },
               icon: const Icon(
                 Icons.add,
