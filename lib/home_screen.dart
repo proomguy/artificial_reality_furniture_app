@@ -1,4 +1,4 @@
-import 'package:ar_furniture_app/upload_items_screen.dart';
+import 'package:ar_furniture_app/items_upload_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
