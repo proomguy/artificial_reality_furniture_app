@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ItemsUploadScreen extends StatefulWidget {
 
@@ -251,7 +252,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
             ),
             ElevatedButton(
                 onPressed: (){
-
+                  showDialogBox();
                 },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.cyan
@@ -271,10 +272,115 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
     );
   }
 
+  //load Dialog Box in the app
+  showDialogBox(){
+    return showDialog(
+        context: context,
+        builder: (c){
+          return SimpleDialog(
+            backgroundColor: Colors.black,
+            title: const Text(
+                "Load Image...",
+              style: TextStyle(
+                  color: Colors.white70,
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+            children: [
+              SimpleDialogOption(
+                onPressed: (){
+                  captureImageWithPhoneCamera();
+                },
+                child: const Text(
+                  "Capture Image with Camera",
+                  style: TextStyle(
+                    color: Colors.deepPurpleAccent
+                  ),
+                ),
+              ),
+              SimpleDialogOption(
+                onPressed: (){
+                  chooseImageFromPhoneGallery();
+                },
+                child: const Text(
+                  "Load Image from the Gallery",
+                  style: TextStyle(
+                      color: Colors.deepPurpleAccent
+                  ),
+                ),
+              ),
+              SimpleDialogOption(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  "Cancel",
+                  style: TextStyle(
+                      color: Colors.deepPurpleAccent
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
+    );
+  }
+
+  //Use phone camera to load images to the app
+  captureImageWithPhoneCamera() async {
+    try{
+      final pickedImage = await ImagePicker().pickImage(source: ImageSource.camera);
+      if(pickedImage != null){
+        String imagePath = pickedImage.path;
+        imageFileUint8list = await pickedImage.readAsBytes();
+
+        //Remove the background from image
+        //Make the image transparent
+
+        setState(() {
+          imageFileUint8list;
+        });
+
+      }
+    }
+    catch(errorMsg){
+      print(errorMsg.toString());
+      setState(() {
+        imageFileUint8list = null;
+      });
+    }
+
+  }
+
+  //Load images from the gallery
+  chooseImageFromPhoneGallery() async{
+    try{
+      final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if(pickedImage != null){
+        String imagePath = pickedImage.path;
+        imageFileUint8list = await pickedImage.readAsBytes();
+
+        //Remove the background from image
+        //Make the image transparent
+
+        setState(() {
+          imageFileUint8list;
+        });
+
+      }
+    }
+    catch(errorMsg){
+      print(errorMsg.toString());
+      setState(() {
+        imageFileUint8list = null;
+      });
+    }
+  }
+
 
 
   @override
   Widget build(BuildContext context) {
-    return uploadFormScreen();
+    return defaultScreen();
   }
 }
