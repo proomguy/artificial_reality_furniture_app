@@ -10,7 +10,7 @@ Future<void> main() async {
     print("Initialized successfully!");
   }
   catch(errorMsg){
-    print("Error : " + errorMsg.toString());
+    print("Error : $errorMsg");
   }
   runApp(const MyApp());
 }

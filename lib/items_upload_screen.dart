@@ -328,6 +328,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
   //Use phone camera to load images to the app
   captureImageWithPhoneCamera() async {
+    Navigator.pop(context);
     try{
       final pickedImage = await ImagePicker().pickImage(source: ImageSource.camera);
       if(pickedImage != null){
@@ -354,6 +355,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
   //Load images from the gallery
   chooseImageFromPhoneGallery() async{
+    Navigator.pop(context);
     try{
       final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
       if(pickedImage != null){
@@ -381,6 +383,6 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return defaultScreen();
+    return imageFileUint8list == null ? defaultScreen() : uploadFormScreen();
   }
 }
